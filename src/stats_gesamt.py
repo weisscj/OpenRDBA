@@ -354,6 +354,7 @@ def main():
     list_em_typ_ = list_em_typ.copy()   # Kopie der globalen Variable erstellen (um Origional zu behalten)
 
     # Liste Grundstichwörter
+    global list_gs_                      # globale Variable deklarieren
     list_gs_ = list_gs.copy()           # Kopie der globalen Variable erstellen (um Origional zu behalten)
     
     # Liste Stichwörter
