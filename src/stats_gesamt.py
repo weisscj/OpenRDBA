@@ -302,7 +302,7 @@ def print_menu():
     print('2 - Auswertung Einsatzmittel')
     print('3 - Auswertung Einsätze nach Rettungsdienstbereichen')
     print('4 - Auswertung Einsatzmittel nach Rettungsdienstbereichen')
-    print('5 - Auswertung Fehleinsätze')
+    print('5 - Auswertung Fehleinsätze nach Grundstichwort')
     print('')
     print('11 - Zeitliche Auswertung Grundstichwörter')
     print('12 - Zeitliche Auswertung Einsatzmitteltypen')
@@ -400,10 +400,10 @@ def main():
             input('\nDrücken Sie eine beliebige Taste zum fortfahren...')
         elif x == '5':
             ### Auswertung Fehleinsätze
-            #print('Geben Sie das Grundstichwort ein, für das Sie eine Auswertung erstellen möchten.')
-            #gs = input('>> ').upper()
-            #data_gs = data.loc[(data[col_grundstichwort] == gs)]
-            stats_gesamt(data, col_fehleinsatz, list_bool)
+            print('Geben Sie das Grundstichwort ein, für das Sie eine Auswertung erstellen möchten.')
+            gs = input('>> ').upper()
+            data_gs = data.loc[(data[col_grundstichwort] == gs)]
+            stats_gesamt(data_gs, col_fehleinsatz, list_bool)
             input('\nDrücken Sie eine beliebige Taste zum fortfahren...')
 
         # Zeitliche Auswertungen
