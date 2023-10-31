@@ -163,7 +163,7 @@ def stats_kommune(gdf):
     gdf_['Einsätze_gesamt'] = gdf_['count']                                                     # Umbenennen
     gdf_ = gdf_.drop('count', axis=1)                                                           # Spalte löschen
     gdf_regions = pd.merge(gdf_regions, gdf_ , left_on='LAU_ID', right_index=True, how='outer') # merge Einsätze mit Kommunen
-    gdf_regions['Einsätze_pro_1000_Einwohner'] = np.round(gdf_regions['Einsätze_gesamt'] / (gdf_regions['Einwohner'] / 1000), 4)    # Anzahl Einsätze pro 1000 Einwohner [Anzahl]
+    gdf_regions['Einsätze_pro_1000_Einwohner'] = np.round(gdf_regions['Einsätze_gesamt'] / (gdf_regions['Einwohner'] / 1000), 2)    # Anzahl Einsätze pro 1000 Einwohner [Anzahl]
     
     # Regionen mit weniger als 25 Einsätzen löschen, erforderlich um fehlerhafte angrenzende Gebiete zu löschen
     gdf_regions = gdf_regions[gdf_regions['Einsätze_gesamt'] > 25]                              # Regionen mit weniger als 25 Einsätzen löschen
@@ -176,7 +176,7 @@ def stats_kommune(gdf):
     gdf_regions = pd.merge(gdf_regions, gdf_ , left_on='LAU_ID', right_index=True, how='outer') # MERGE
     gdf_regions = gdf_regions[gdf_regions['GISCO_ID'].notna()]                                  # 
     gdf_regions['Fehleinsätze [%]'] = (np.round((gdf_regions['Fehleinsätze'] / gdf_regions['Einsätze_gesamt']) * 100, 2)).astype(int)   # Fehleinsätze in Prozent berechnen und runden
-    gdf_regions['Fehleinsätze_pro_1000_Einwohner'] = np.round(gdf_regions['Fehleinsätze'] / (gdf_regions['Einwohner'] / 1000), 4)       # Anzahl Fehleinsätze pro 1000 Einwohner [Anzahl]
+    gdf_regions['Fehleinsätze_pro_1000_Einwohner'] = np.round(gdf_regions['Fehleinsätze'] / (gdf_regions['Einwohner'] / 1000), 2)       # Anzahl Fehleinsätze pro 1000 Einwohner [Anzahl]
 
     # Gesamtzahl auswertbare Einsätze Hilfsfrist bestimmten und Hilfsfrist berechnen
     gdf_hf = gdf.loc[gdf[col_grundstichwort].isin(gs_hf)]                                       # nur für Hilfsfrist relevante Grundstichwörter filtern (definiert in config.py)
